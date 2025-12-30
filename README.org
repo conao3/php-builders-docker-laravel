@@ -1,9 +1,111 @@
-#+title:
+#+title: php-builders-docker-laravel
 #+author: conao3
 #+date:
 #+options: ^:{}
 
-* Config                                                           :noexport:
-
 * php-builders-docker-laravel
-php-buildersの[[https://php-builders.connpass.com/event/211985/][docker-laravelハンズオン]]の参加者レポジトリ
+
+A Docker-based Laravel development environment, created as part of the [[https://php-builders.connpass.com/event/211985/][php-builders Docker Laravel hands-on session]].
+
+** Overview
+
+This repository provides a fully containerized Laravel development stack with PHP, Nginx, and MySQL. It offers a consistent and reproducible environment for Laravel application development.
+
+** Stack
+
+| Component | Version |
+|-----------+---------|
+| PHP       | 8.0 FPM |
+| Nginx     | 1.18    |
+| MySQL     | 8.0     |
+| Composer  | 2.0     |
+
+** Project Structure
+
+#+begin_src
+.
+├── backend/          # Laravel application
+├── infra/
+│   ├── mysql/        # MySQL configuration
+│   ├── nginx/        # Nginx configuration
+│   └── php/          # PHP Dockerfile and settings
+└── docker-compose.yml
+#+end_src
+
+** Getting Started
+
+*** Prerequisites
+
+- Docker
+- Docker Compose
+
+*** Installation
+
+1. Clone the repository:
+
+   #+begin_src bash
+   git clone https://github.com/conao3/php-builders-docker-laravel.git
+   cd php-builders-docker-laravel
+   #+end_src
+
+2. Copy the environment file:
+
+   #+begin_src bash
+   cp backend/.env.example backend/.env
+   #+end_src
+
+3. Build and start the containers:
+
+   #+begin_src bash
+   docker compose up -d --build
+   #+end_src
+
+4. Install dependencies:
+
+   #+begin_src bash
+   docker compose exec app composer install
+   #+end_src
+
+5. Generate the application key:
+
+   #+begin_src bash
+   docker compose exec app php artisan key:generate
+   #+end_src
+
+*** Accessing the Application
+
+Open your browser and navigate to:
+
+- http://localhost:10088
+
+** Development
+
+*** Running Artisan Commands
+
+#+begin_src bash
+docker compose exec app php artisan <command>
+#+end_src
+
+*** Running Composer Commands
+
+#+begin_src bash
+docker compose exec app composer <command>
+#+end_src
+
+*** Database Access
+
+The MySQL database is accessible with the following credentials:
+
+| Property | Value         |
+|----------+---------------|
+| Database | laravel_local |
+| User     | phper         |
+| Password | secret        |
+
+** License
+
+This project is open source.
+
+** Author
+
+- conao3
