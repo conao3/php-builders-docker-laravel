@@ -15,10 +15,10 @@ This repository provides a fully containerized Laravel development stack with PH
 
 | Component | Version |
 |-----------+---------|
-| PHP       | 8.0 FPM |
+| PHP       | 8.3 FPM |
 | Nginx     | 1.18    |
 | MySQL     | 8.0     |
-| Composer  | 2.0     |
+| Composer  | 2.x     |
 
 ** Project Structure
 
@@ -38,6 +38,7 @@ This repository provides a fully containerized Laravel development stack with PH
 
 - Docker
 - Docker Compose
+- Node.js and npm
 
 *** Installation
 
@@ -54,19 +55,25 @@ This repository provides a fully containerized Laravel development stack with PH
    cp backend/.env.example backend/.env
    #+end_src
 
-3. Build and start the containers:
+3. Install and build the frontend assets:
+
+   #+begin_src bash
+   cd backend && npm ci && npm run build && cd ..
+   #+end_src
+
+4. Build and start the containers:
 
    #+begin_src bash
    docker compose up -d --build
    #+end_src
 
-4. Install dependencies:
+5. Install dependencies:
 
    #+begin_src bash
    docker compose exec app composer install
    #+end_src
 
-5. Generate the application key:
+6. Generate the application key:
 
    #+begin_src bash
    docker compose exec app php artisan key:generate
