@@ -1,4 +1,4 @@
-FROM php:8.3-fpm-bookworm
+FROM php:8.5-fpm-trixie
 
 SHELL ["/bin/bash", "-oeux", "pipefail", "-c"]
 

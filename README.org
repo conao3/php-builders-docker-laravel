@@ -15,8 +15,8 @@ This repository provides a fully containerized Laravel development stack with PH
 
 | Component | Version |
 |-----------+---------|
-| PHP       | 8.3 FPM |
-| Nginx     | 1.18    |
+| PHP       | 8.5 FPM |
+| Nginx     | 1.29    |
 | MySQL     | 8.0     |
 | Composer  | 2.x     |
 
